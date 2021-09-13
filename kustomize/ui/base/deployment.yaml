@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: msp-ui
+  name: msp-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: msp-ui
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: msp-ui
+    spec:
+      containers:
+      - image: nginx:latest
+        name: msp-ui
+        ports:
+        - containerPort: 16000
+        resources: {}
+status: {}
