@@ -8,5 +8,7 @@ spec:
   interval: 1m0s
   ref:
     branch: main
+  secretRef:
+    name: github-msp-deploy
   url: https://github.com/tnpugi/msp-deploy.git
 
