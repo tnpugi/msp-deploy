@@ -10,10 +10,10 @@ spec:
   template:
     spec:
       containers:
-      - image: degops.azurecr.io/nginx
-        tag: latest # {"$imagepolicy": "msp:degops-nginx:tag"}
-        name: msp-api
-        ports:
-        - containerPort: 16000
-        resources: {}
+        - image: degops.azurecr.io/nginx
+          tag: main-f12345654-1619182001 # {"$imagepolicy": "msp:degops-nginx:tag"}
+          name: msp-api
+          ports:
+            - containerPort: 16000
+          resources: {}
 status: {}
