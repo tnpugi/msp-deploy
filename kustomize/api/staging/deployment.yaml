@@ -6,20 +6,12 @@ metadata:
     app: msp-api
   name: msp-api
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: msp-api
-  strategy: {}
+  replicas: 2
   template:
-    metadata:
-      creationTimestamp: null
-      labels:
-        app: msp-api
     spec:
       containers:
       - image: degops.azurecr.io/nginx
-        tag: latest
+        tag: latest # {"$imagepolicy": "flux-system:degops-nginx:tag"}
         name: msp-api
         ports:
         - containerPort: 16000
