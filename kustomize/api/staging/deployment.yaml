@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - image: degops.azurecr.io/nginx
-        tag: 1.21.1 # {"$imagepolicy": "flux-system:degops-nginx:tag"}
+        tag: latest # {"$imagepolicy": "msp:degops-nginx:tag"}
         name: msp-api
         ports:
         - containerPort: 16000
