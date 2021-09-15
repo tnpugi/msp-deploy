@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
 - ../base
 patchesStrategicMerge: 
-- deployment.yaml
+- api-deployment.yaml

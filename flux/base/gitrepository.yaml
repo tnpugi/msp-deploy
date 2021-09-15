@@ -3,7 +3,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: GitRepository
 metadata:
   name: msp
-  namespace: flux-system
+  namespace: msp
 spec:
   interval: 1m0s
   ref:

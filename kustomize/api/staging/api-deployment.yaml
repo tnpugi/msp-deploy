@@ -10,7 +10,7 @@ spec:
   template:
     spec:
       containers:
-        - image: degops.azurecr.io/nginx:main-f12345654-1619182001 # {"$imagepolicy": "msp:degops-nginx"}
+        - image: degops.azurecr.io/msp-api:staging-a1234567-1500000000 # {"$imagepolicy": "msp:msp-api"}
           name: msp-api
           ports:
             - containerPort: 16000

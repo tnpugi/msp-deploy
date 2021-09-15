@@ -3,6 +3,6 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
   name: msp-ui
-  namespace: flux-system
+  namespace: msp
 spec:
   path: ./kustomize/ui/staging

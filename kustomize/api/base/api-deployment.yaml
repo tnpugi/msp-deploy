@@ -18,7 +18,7 @@ spec:
         app: msp-api
     spec:
       containers:
-      - image: degops.azurecr.io/nginx
+      - image: degops.azurecr.io/msp-api:development-a1234567-1500000000
         name: msp-api
         ports:
         - containerPort: 16000

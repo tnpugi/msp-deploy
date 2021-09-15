@@ -3,7 +3,7 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
   name: msp-api
-  namespace: flux-system
+  namespace: msp
 spec:
   healthChecks:
   - kind: Deployment
@@ -19,3 +19,74 @@ spec:
   timeout: 3m0s
   validation: client
 
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: msp-api
+  namespace: msp
+spec:
+  image: degops.azurecr.io/msp-api
+  interval: 1m0s
+  secretRef:
+    name: docker-config
+
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: msp-api
+  namespace: msp
+spec:
+  imageRepositoryRef:
+    name: msp-api
+  policy:
+    numerical:
+      order: asc
+  filterTags:
+    extract: $ts
+    pattern: '^development-[a-f0-9]+-(?P<ts>[0-9]+)'
+
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: msp-api
+  namespace: msp
+spec:
+  interval: 1m0s
+  sourceRef:
+    kind: GitRepository
+    name: msp
+  git:
+    checkout:
+      ref:
+        branch: main
+    commit:
+      author:
+        email: fluxcdbot-noreply@hpe.com
+        name: fluxcdbot
+      messageTemplate: |
+        Automated image update
+
+        Automation name: {{ .AutomationObject }}
+
+        Files:
+        {{ range $filename, $_ := .Updated.Files -}}
+        - {{ $filename }}
+        {{ end -}}
+
+        Objects:
+        {{ range $resource, $_ := .Updated.Objects -}}
+        - {{ $resource.Kind }} {{ $resource.Name }}
+        {{ end -}}
+
+        Images:
+        {{ range .Updated.Images -}}
+        - {{.}}
+        {{ end -}}
+    push:
+      branch: flux-updates
+  update:
+    path: ./kustomize/api/development
+    strategy: Setters
