@@ -19,7 +19,6 @@ spec:
     spec:
       containers:
       - image: degops.azurecr.io/nginx
-        tag: latest
         name: msp-api
         ports:
         - containerPort: 16000
