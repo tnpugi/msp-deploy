@@ -16,6 +16,3 @@ spec:
         - containerPort: 16000
         resources: {}
 status: {}
-patchesStrategicMerge: 
-- kustomization-api-staging.yaml
-- kustomization-ui-staging.yaml
