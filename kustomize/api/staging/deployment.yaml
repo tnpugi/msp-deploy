@@ -10,10 +10,12 @@ spec:
   template:
     spec:
       containers:
-      - image: degops.azurecr.io/nginx
-        tag: latest # {"$imagepolicy": "msp:degops-nginx:tag"}
+      - image: degops.azurecr.io/nginx:latest # {"$imagepolicy": "msp:degops-nginx"}
         name: msp-api
         ports:
         - containerPort: 16000
         resources: {}
 status: {}
+patchesStrategicMerge: 
+- kustomization-api-staging.yaml
+- kustomization-ui-staging.yaml
